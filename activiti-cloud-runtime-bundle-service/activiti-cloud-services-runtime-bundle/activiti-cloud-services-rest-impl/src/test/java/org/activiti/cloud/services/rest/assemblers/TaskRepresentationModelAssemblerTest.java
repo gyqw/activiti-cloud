@@ -53,9 +53,9 @@ public class TaskRepresentationModelAssemblerTest {
 
         EntityModel<CloudTask> resource = representationModelAssembler.toModel(model);
 
-        assertThat(resource.getLink("claim")).isNotPresent();
-        assertThat(resource.getLink("release")).isPresent();
-        assertThat(resource.getLink("complete")).isPresent();
+        assertThat(resource.getLink("claim")).isPresent();
+        assertThat(resource.getLink("release")).isNotPresent();
+        assertThat(resource.getLink("complete")).isNotPresent();
     }
 
     @Test
