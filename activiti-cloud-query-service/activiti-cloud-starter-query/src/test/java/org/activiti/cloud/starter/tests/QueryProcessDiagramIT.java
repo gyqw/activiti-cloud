@@ -19,6 +19,7 @@ package org.activiti.cloud.starter.tests;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.tuple;
 import static org.awaitility.Awaitility.await;
+import static org.awaitility.Durations.ONE_MINUTE;
 
 import java.io.IOException;
 import java.nio.charset.StandardCharsets;
@@ -47,7 +48,6 @@ import org.activiti.cloud.services.query.model.BPMNSequenceFlowEntity;
 import org.activiti.cloud.services.test.identity.keycloak.interceptor.KeycloakTokenProducer;
 import org.activiti.cloud.starters.test.EventsAggregator;
 import org.activiti.cloud.starters.test.MyProducer;
-import org.awaitility.Duration;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -149,7 +149,7 @@ public class QueryProcessDiagramIT {
             assertThat(bpmnSequenceFlowRepository.findByProcessInstanceId(process.getId())).hasSize(1);
         });
 
-        await().atMost(Duration.ONE_MINUTE).untilAsserted(() -> {
+        await().atMost(ONE_MINUTE).untilAsserted(() -> {
 
             //when
             ResponseEntity<String> responseEntity = testRestTemplate.exchange(PROC_URL + "/" + process.getId() + "/diagram",
@@ -177,7 +177,7 @@ public class QueryProcessDiagramIT {
             assertThat(bpmnSequenceFlowRepository.findByProcessInstanceId(process.getId())).hasSize(1);
         });
 
-        await().atMost(Duration.ONE_MINUTE).untilAsserted(() -> {
+        await().atMost(ONE_MINUTE).untilAsserted(() -> {
 
             //when
             ResponseEntity<String> responseEntity = testRestTemplate.exchange(PROC_URL + "/" + process.getId() + "/diagram",
